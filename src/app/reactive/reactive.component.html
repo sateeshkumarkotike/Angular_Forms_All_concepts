@@ -1,0 +1,96 @@
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <form [formGroup]="formData" (ngSubmit)="formSubmited()">
+                <div class="form-row">
+
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Email</label>
+                    <input type="email"  class="form-control" formControlName="UserName" id="inputEmail4">
+                    <div *ngIf="formData.get('UserName').errors?.required && formData.get('UserName')?.touched">
+                        <small>name required</small>
+                    </div>
+                     <div *ngIf="formData.get('UserName').errors?.minlength && formData.get('UserName')?.touched">
+                        <small>name minlenght 4</small>
+                    </div>
+                </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Password</label>
+                    <input type="text" class="form-control" id="inputPassword4" formControlName="email" placeholder="Password">
+                        <div *ngIf="Email.errors?.required && Email?.touched">
+                            <small>Email required</small>
+                        </div>
+                        <div *ngIf="Email.errors?.minlength && Email?.touched">
+                            <small>Email minlenght 4</small>
+                        </div>
+                  </div>
+
+
+                </div>
+                <div class="form-group">
+                  <label for="inputAddress">Address1</label>
+                  <input type="text" class="form-control" formControlName="address1" id="inputAddress" placeholder="1234 Main St">
+                   <div *ngIf="Address1.errors?.required && Address1?.touched">
+                     <small>Address1 required</small>
+                   </div>
+                   <div *ngIf="Address1.errors?.minlength && Address1?.touched">
+                     <small>Address1 minlenght 4</small>
+                   </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputAddress2">Address 2</label>
+                  <input type="text" class="form-control"  formControlName="address2" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                  <div *ngIf="Address2.errors?.required && Address2?.touched">
+                    <small>Address2 required</small>
+                  </div>
+                  <div *ngIf="Address2.errors?.minlength && Address2?.touched">
+                    <small>Address2 minlenght 4</small>
+                  </div>
+                </div>
+
+                <div class="form-row" formGroupName="Address">
+
+                  <div class="form-group col-md-6">
+                    <label for="inputCity">City</label>
+                    <input type="text" class="form-control" formControlName="city" id="inputCity">
+                    <div *ngIf="City.errors?.required && City?.touched">
+                        <small>City required</small>
+                    </div>
+                    <div *ngIf="City.errors?.minlength && City?.touched">
+                        <small>City length 4</small>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="inputState">State</label>
+                    <select id="inputState" class="form-control" formControlName="state" >
+                        <option selected [ngValue]="null" >Select State</option>
+                        <option value={{state}} *ngFor="let state of states">{{ state}}</option>
+                        <div *ngIf="State.errors?.required && State?.touched">
+                            <small>State required</small>
+                        </div>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-2">
+                    <label for="inputZip">Zip</label>
+                    <input type="text" class="form-control" formControlName="code" id="inputZip">
+                    <div *ngIf="Code.errors?.required && Code?.touched">
+                        <small>Code required</small>
+                    </div>
+                    <div *ngIf="Code.errors?.minlength && Code?.touched">
+                        <small>Code length 4</small>
+                    </div>
+                  </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" [disabled]="formData.invalid">Sign in</button>
+              </form>
+        </div>
+    </div>
+</div>

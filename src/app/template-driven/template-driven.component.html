@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="row mx-auto">
+        <div class="col-md-12">
+            <form #userForm="ngForm" (ngSubmit)="formData()">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Email</label>
+                        <input type="text" class="form-control" id="inputEmail4" ngModel #email="ngModel" name="email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}$" required>
+                        <div *ngIf="email?.errors?.required && email?.touched">
+                            <small>email reqired</small>
+                        </div>
+                        <div *ngIf="email?.errors?.pattern && email?.touched">
+                            <small>email pattern</small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Password</label>
+                        <input type="text" class="form-control" ngModel name="password" #password="ngModel" required minlength="4" id="inputPassword4">
+                        <div *ngIf="password?.errors?.required && password?.touched">
+                            <small>password reqired</small>
+                        </div>
+                        <div *ngIf="password?.errors?.pattern && password?.touched">
+                            <small>password pattern</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Address</label>
+                    <input type="text" class="form-control" name="address1" ngModel #address1="ngModel" required minlength="4" id="inputAddress" placeholder="1234 Main St">
+                    <div *ngIf="address1?.errors?.required && address1?.touched">
+                        <small>address1 reqired</small>
+                    </div>
+                    <div *ngIf="address1?.errors?.minlength && address1?.touched">
+                        <small>address1 minlength</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress2">Address 2</label>
+                    <input type="text" class="form-control" id="inputAddress2" name="address2" ngModel #address2="ngModel" required maxlength="6" placeholder="Apartment, studio, or floor">
+                    <div *ngIf="address2?.errors?.required && address2?.touched">
+                        <small>address2 reqired</small>
+                    </div>
+                    <div *ngIf="address2?.errors?.maxlength && address2?.touched">
+                        <small>address2 minlength</small>
+                    </div>
+                </div>
+                <div class="form-row" ngModelGroup="Address">
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" name="city" ngModel #city="ngModel" required minlength="4" class="form-control" id="inputCity">
+                        <div *ngIf="city?.errors?.required && city?.touched">
+                            <small>city reqired</small>
+                        </div>
+                        <div *ngIf="city?.errors?.maxlength && city?.touched">
+                            <small>city minlength</small>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputState">State</label>
+                        <select id="inputState" name="state" ngModel #state="ngModel" required class="form-control">
+                        <option selected value="" >Choose</option>
+                        <option [value]="State.stateName" *ngFor="let State of States">{{ State.stateName }}</option>
+                    </select>
+                        <div *ngIf="state?.errors?.required && state?.touched">
+                            <small>please select State</small>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputZip">Zip</label>
+                        <input type="text" class="form-control" ngModel name="zipcode" #pcode="ngModel" required pattern="[1-9]*" id="inputZip">
+                        <div *ngIf="pcode?.errors?.required && pcode?.touched">
+                            <small>PostelCode reqired</small>
+                        </div>
+                        <div *ngIf="pcode?.errors?.pattern && pcode?.touched">
+                            <small>PostelCode graterthan 0</small>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">Sign in</button>
+            </form>
+        </div>
+        {{ userForm.value | json}}
+    </div>
+</div>

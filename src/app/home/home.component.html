@@ -1,0 +1,22 @@
+<p>home works!</p>
+
+<app-input-output (clikcedEvent)="eventfromChild($event)" [inputString]="name"></app-input-output>
+ 
+<div *ngFor="let eventsArray1 of eventsArray" > 
+  <div style="color: red;border-radius: 4px solid red;padding: 3px;margin:10px;background-color: aqua;box-shadow: 0 0 10px black;">
+    <h1>{{eventsArray1.name1}}</h1>
+    <h1>{{eventsArray1.name2}}</h1>
+  </div>
+   
+</div>
+<button (click)="clear()">Clear</button>
+
+<div class="conatiner">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let category of categories ;let i=index" (click)="navigateToCategory(category.CategoryID)">
+      <h4 style="box-shadow: 0 0 10px black;background-color: red;padding: 10px ;">
+        {{category.CategoryName}}
+      </h4>
+    </div>
+  </div>
+</div>
